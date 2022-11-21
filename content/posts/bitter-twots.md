@@ -1,6 +1,6 @@
 +++
 title = "Twitter without humans"
-draft = true
+draft = false
 +++
 
 Procrastinate wisely.

@@ -1,6 +1,6 @@
 +++
 title = "Project-based course generator"
-draft = true
+draft = false
 +++
 
 Generate educational step-by-step guides from the prompt.
