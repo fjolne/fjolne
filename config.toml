@@ -80,7 +80,7 @@ unsafe = true
     missingBackButtonLabel = "Back to home page"
 
     [languages.en.params.logo]
-      logoText = "AI, Decentralization, FLOSS"
+      logoText = "Journal"
       logoHomeLink = "/"
 
     [languages.en.menu]
