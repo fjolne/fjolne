@@ -84,5 +84,8 @@
   <link href="{{ .RelPermalink }}" rel="alternate" type="application/json" title="{{ $.Site.Title }}" />
 {{ end }}
 
+<!-- LaTeX -->
+{{ partial "mathjax.html" }}
+
 <!-- Extended head section-->
 {{ partial "extended_head.html" . }}
