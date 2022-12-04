@@ -1,0 +1,6 @@
+* Journal
+Public subset of private notes.
+** Credits
++ content written in [[https://orgmode.org/][Org]]
++ exported to [[https://gohugo.io/][Hugo]] with [[https://ox-hugo.scripter.co/][ox-hugo]]
++ theme is based on [[https://github.com/panr/hugo-theme-terminal][Terminal]] by [[https://twitter.com/panr][panr]]
