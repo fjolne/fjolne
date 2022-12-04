@@ -1,9 +1,12 @@
 +++
 title = "Project-based course generator"
+date = 2022-11-21T00:00:00+00:00
+lastmod = 2022-12-04T17:28:39+00:00
 draft = false
 +++
 
-Generate educational step-by-step guides from the prompt.
+Thoughts about a system which suggests you project ideas and potential course of
+action based on your background and preferences.
 
 <!--more-->
 

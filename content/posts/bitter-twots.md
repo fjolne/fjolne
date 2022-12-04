@@ -1,9 +1,11 @@
 +++
 title = "Twitter without humans"
+date = 2022-11-21T00:00:00+00:00
 draft = false
 +++
 
-Procrastinate wisely.
+Thoughts on what could we get if we distilled the educational discovery aspect
+of Twitter into a separate system.
 
 <!--more-->
 
