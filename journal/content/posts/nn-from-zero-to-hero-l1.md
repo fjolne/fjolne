@@ -1,6 +1,6 @@
 +++
 title = "NN: From Zero to Hero, Lecture 1"
-lastmod = 2022-12-05T14:14:51+00:00
+lastmod = 2022-12-05T14:18:04+00:00
 draft = false
 +++
 
@@ -12,13 +12,36 @@ own.
 <!--more-->
 
 
-## Create Jupyter notebook {#create-jupyter-notebook}
+## Goals {#goals}
+
+-   learn what is neural network from first principles
+-   understand how backward propagation in neural networks works
+-   build and train a neural network as binary classificator from scratch
+-   refine your Python and Jupyter skills
+-   learn how PyTorch works under the hood
+-   learn how to visualize data as graphs
+
+
+## Skills to be acquired {#skills-to-be-acquired}
+
+-   Data Visualization
+    -   GraphViz
+-   Neural Networks
+    -   expression graph
+    -   backpropagation
+    -   PyTorch
+
+
+## Tasks {#tasks}
+
+
+### Create Jupyter notebook {#create-jupyter-notebook}
 
 -   install Jupyter: `pip install jupyter`
 -   run Jupyter server: `jupyter notebook`
 
 
-## Create Value abstraction {#create-value-abstraction}
+### Create Value abstraction {#create-value-abstraction}
 
 -   it represents a float value
 -   it supports addition and multiplication with other Values
@@ -36,7 +59,7 @@ own.
     ```
 
 
-## Visualize the resulting expression graph via GraphViz {#visualize-the-resulting-expression-graph-via-graphviz}
+### Visualize the resulting expression graph via GraphViz {#visualize-the-resulting-expression-graph-via-graphviz}
 
 -   install GraphViz: `pip install graphviz`
 -   import relevant class: `from graphviz import Digraph`
@@ -69,7 +92,7 @@ own.
     ![](/ox-hugo/l1alt-simple-graph.svg)
 
 
-## Implement gradient calculation {#implement-gradient-calculation}
+### Implement gradient calculation {#implement-gradient-calculation}
 
 -   gradient is a partial derivative of the final expression
     with respect to the current expression
@@ -95,7 +118,7 @@ own.
     -   consider a case when some Value is used twice
 
 
-## Implement more operations {#implement-more-operations}
+### Implement more operations {#implement-more-operations}
 
 -   subtraction: `x - y = x + (y * -1)`
 -   power: `x**k` where `k` is a constant (not a Value)
@@ -104,7 +127,7 @@ own.
 -   tanh: `x.tanh()`
 
 
-## Construct and test expression graph for a single neuron {#construct-and-test-expression-graph-for-a-single-neuron}
+### Construct and test expression graph for a single neuron {#construct-and-test-expression-graph-for-a-single-neuron}
 
 ```python
 x1 = Value(2.0, label='x1')
@@ -126,7 +149,7 @@ o.backward()
 ```
 
 
-## Create Neuron abstraction {#create-neuron-abstraction}
+### Create Neuron abstraction {#create-neuron-abstraction}
 
 -   it is defined by a list of weights + bias
 -   it is callable with a list of input values, producing a squashed output:
@@ -135,13 +158,13 @@ o.backward()
         \\]
 
 
-## Create Layer abstraction {#create-layer-abstraction}
+### Create Layer abstraction {#create-layer-abstraction}
 
 -   it is defined by a list of neurons
 -   it is callable with a list of inputs, producing a list of neuron outputs
 
 
-## Create MLP (Multi-Layer Perceptron) abstraction {#create-mlp--multi-layer-perceptron--abstraction}
+### Create MLP (Multi-Layer Perceptron) abstraction {#create-mlp--multi-layer-perceptron--abstraction}
 
 -   it is defined by a list of layers
 -   it is callable with a list of inputs, producing a list of outputs of the last
@@ -150,7 +173,7 @@ o.backward()
     binary classificator with classes `-1.0` and `1.0`
 
 
-## Compose a loss function {#compose-a-loss-function}
+### Compose a loss function {#compose-a-loss-function}
 
 -   it indicates how good the MLP prediction is
 -   there could be different loss functions, e.g.
