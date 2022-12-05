@@ -1,6 +1,6 @@
 +++
 title = "NN: From Zero to Hero, Lecture 1"
-lastmod = 2022-12-04T17:49:02+00:00
+lastmod = 2022-12-05T01:30:58+00:00
 draft = false
 +++
 
@@ -124,8 +124,33 @@ o.backward()
 
 ## Create Neuron abstraction {#create-neuron-abstraction}
 
+-   it is defined by a list of weights + bias
+-   it is callable with a list of input values, producing a squashed output:
+    \\[
+        neuron([x\_1, \ldots, x\_n]) = tanh(\sum{w\_i x\_i} + b)
+        \\]
+
 
 ## Create Layer abstraction {#create-layer-abstraction}
 
+-   it is defined by a list of neurons
+-   it is callable with a list of inputs, producing a list of neuron outputs
+
 
 ## Create MLP (Multi-Layer Perceptron) abstraction {#create-mlp--multi-layer-perceptron--abstraction}
+
+-   it is defined by a list of layers
+-   it is callable with a list of inputs, producing a list of outputs of the last
+    layer
+-   by providing only one neuron in the last layer we can treat MLP as a
+    binary classificator with classes `-1.0` and `1.0`
+
+
+## Compose a loss function {#compose-a-loss-function}
+
+-   it indicates how good the MLP prediction is
+-   there could be different loss functions, e.g.
+
+\\[
+loss(\\{x\_i^j \\}) = \sum\_j(y\_{pred}^j - y\_{gt}^j)^2
+\\]
