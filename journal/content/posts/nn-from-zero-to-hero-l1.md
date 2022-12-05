@@ -1,6 +1,6 @@
 +++
 title = "NN: From Zero to Hero, Lecture 1"
-lastmod = 2022-12-05T01:30:58+00:00
+lastmod = 2022-12-05T14:14:51+00:00
 draft = false
 +++
 
@@ -20,15 +20,15 @@ own.
 
 ## Create Value abstraction {#create-value-abstraction}
 
--   it should represent a float value
--   it should support addition and multiplication with other Values
+-   it represents a float value
+-   it supports addition and multiplication with other Values
     ```python
       x = Value(1.0)
       y = Value(2.0)
       z = Value(3.0)
       (x + y) * z # Value(9.0)
     ```
--   non-leaf values should store its operation and arguments
+-   non-leaf values store its operation and arguments
     ```python
       x = Value(1.0)
       y = Value(2.0)
@@ -38,14 +38,15 @@ own.
 
 ## Visualize the resulting expression graph via GraphViz {#visualize-the-resulting-expression-graph-via-graphviz}
 
--   install: `pip install graphviz`
--   import: `from graphviz import Digraph`
--   draw the expression graph using GraphViz API:
+-   install GraphViz: `pip install graphviz`
+-   import relevant class: `from graphviz import Digraph`
+-   draw the expression graph:
+
     -   create graph object
         ```python
             dot = Digraph()
         ```
-    -   add graph node
+    -   add Value nodes to graph
         ```python
             dot.node(
                 name, # unique node identifier
@@ -54,7 +55,7 @@ own.
             )
             # dot.node(name='a', label=f'{{ a | {a:.4f} }}', shape='record')
         ```
-    -   add graph edge
+    -   connect argument nodes to the output nodes
         ```python
             dot.edge(
                 name_from, # source node name
@@ -62,7 +63,10 @@ own.
             )
             # dot.edge('a', 'b')
         ```
--
+    -   2 example outputs for `(x + y) * z`
+
+    ![](/ox-hugo/l1-simple-graph.svg)
+    ![](/ox-hugo/l1alt-simple-graph.svg)
 
 
 ## Implement gradient calculation {#implement-gradient-calculation}
