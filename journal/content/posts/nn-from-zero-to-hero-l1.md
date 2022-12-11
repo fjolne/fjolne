@@ -1,10 +1,11 @@
 +++
 title = "NN: From Zero to Hero, Lecture 1"
-lastmod = 2022-12-05T14:18:04+00:00
+date = 2022-12-04T00:00:00+00:00
+lastmod = 2022-12-11T17:49:09+00:00
 draft = false
 +++
 
-Attempt to translate the first lecture of
+Opinionated translation of the first lecture of
 [Andrej Karpathy's course](https://github.com/karpathy/nn-zero-to-hero) into a
 step-by-step guide where you're encouraged to come up with solutions on your
 own.
@@ -59,12 +60,11 @@ own.
     ```
 
 
-### Visualize the resulting expression graph via GraphViz {#visualize-the-resulting-expression-graph-via-graphviz}
+### Visualize the resulting expression graph {#visualize-the-resulting-expression-graph}
 
 -   install GraphViz: `pip install graphviz`
 -   import relevant class: `from graphviz import Digraph`
 -   draw the expression graph:
-
     -   create graph object
         ```python
             dot = Digraph()
@@ -86,10 +86,15 @@ own.
             )
             # dot.edge('a', 'b')
         ```
-    -   2 example outputs for `(x + y) * z`
+    -   given expression `(x + y) * z`
 
-    ![](/ox-hugo/l1-simple-graph.svg)
-    ![](/ox-hugo/l1alt-simple-graph.svg)
+        -   your graph can look like this
+
+        {{< figure src="/ox-hugo/l1-simple-graph.svg" >}}
+
+        -   or like this
+
+        {{< figure src="/ox-hugo/l1alt-simple-graph.svg" >}}
 
 
 ### Implement gradient calculation {#implement-gradient-calculation}
@@ -127,7 +132,7 @@ own.
 -   tanh: `x.tanh()`
 
 
-### Construct and test expression graph for a single neuron {#construct-and-test-expression-graph-for-a-single-neuron}
+### Create and test expression graph for a single neuron {#create-and-test-expression-graph-for-a-single-neuron}
 
 ```python
 x1 = Value(2.0, label='x1')
@@ -161,23 +166,86 @@ o.backward()
 ### Create Layer abstraction {#create-layer-abstraction}
 
 -   it is defined by a list of neurons
--   it is callable with a list of inputs, producing a list of neuron outputs
+-   it is callable with a list of inputs, producing a list of neuron outputs:
+    \\[
+        layer([x\_1, \ldots, x\_n]) = [n\_j([x\_1, \ldots, x\_n]) \\,|\\, n\_j \in layer]
+        \\]
 
 
 ### Create MLP (Multi-Layer Perceptron) abstraction {#create-mlp--multi-layer-perceptron--abstraction}
 
 -   it is defined by a list of layers
 -   it is callable with a list of inputs, producing a list of outputs of the last
-    layer
--   by providing only one neuron in the last layer we can treat MLP as a
-    binary classificator with classes `-1.0` and `1.0`
+    layer:
+    \\[
+        mlp([x\_1, \ldots, x\_n]) = mlp'(l\_1([x\_1, \ldots, x\_n])) = \ldots = [y\_1,
+        \ldots, y\_m]
+        \\]
+-   for convenience, if the last layer consists only of one neuron return it
+    instead of a list
 
 
-### Compose a loss function {#compose-a-loss-function}
+### Create a test dataset {#create-a-test-dataset}
 
--   it indicates how good the MLP prediction is
--   there could be different loss functions, e.g.
+-   define some sample data, e.g.
+    ```python
+      # sets of inputs
+      xs = [
+          [2.0,3.0,-1.0],
+          [3.0,-1.0,0.5],
+          [0.5,1.0,1.0],
+          [1.0,1.0,-1.0],
+      ]
+      # ground truth (aka expected) outputs
+      ys_gt = [1.0,-1.0,-1.0,1.0]
+    ```
+-   run your MLP on it
+    ```python
+      # predicted (aka actual) outputs
+      ys_pred = [mlp(x) for x in xs]
+      # [Value(-0.79),Value(-0.29),Value(0.65),Value(0.23)]
+    ```
+
+
+### Compute the loss {#compute-the-loss}
+
+-   it indicates how good is the MLP prediction
+-   there are different loss functions, but we're gonna use
+    Mean Squared Error (MSE)
 
 \\[
-loss(\\{x\_i^j \\}) = \sum\_j(y\_{pred}^j - y\_{gt}^j)^2
+loss = \sum\_j(y\_{pred}^j - y\_{gt}^j)^2
 \\]
+
+
+### Update MLP parameters {#update-mlp-parameters}
+
+-   add `parameters()` method to MLP which returns the list of all weights and biases
+-   compute the gradients starting from the loss:
+    ```python
+      loss.backward()
+    ```
+-   go through the list of parameters and nudge each of them in the opposite
+    direction to the gradient (thus decreasing the loss):
+    ```python
+      rate = 0.001
+      for p in mlp.parameters():
+          p.data += rate * -p.grad
+    ```
+-   compute the loss once again and see it getting smaller, which means
+    predictions are getting closer to the ground truth
+
+
+### Create a cycle: Prediction-Loss-Backprop-Update {#create-a-cycle-prediction-loss-backprop-update}
+
+-   iterate N times:
+    -   compute the predictions
+    -   compute the loss
+    -   backprop gradients from the loss
+    -   update MLP parameters
+-   print predicted values to see how close they got to the ground truth
+
+
+### Conclusion {#conclusion}
+
+-   you've just created, trained and used a real neural network
