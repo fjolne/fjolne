@@ -1,7 +1,7 @@
 +++
 title = "NN: From Zero to Hero, Lecture 1"
 date = 2022-12-04T00:00:00+00:00
-lastmod = 2022-12-12T13:21:14+00:00
+lastmod = 2022-12-12T15:14:49+00:00
 draft = false
 +++
 
@@ -269,4 +269,6 @@ loss = \sum\_j(y\_{pred}^j - y\_{gt}^j)^2
 
 ### Conclusion {#conclusion}
 
--   you've just created, trained and used a real neural network!
+-   you've just created, trained and used a real neural network
+-   you can use it for many different tasks: predict housing prices, recognize
+    hand-written digits, etc
