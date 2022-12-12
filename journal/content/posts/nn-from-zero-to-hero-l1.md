@@ -1,7 +1,7 @@
 +++
 title = "NN: From Zero to Hero, Lecture 1"
 date = 2022-12-04T00:00:00+00:00
-lastmod = 2022-12-12T19:53:03+00:00
+lastmod = 2022-12-12T20:24:19+00:00
 draft = false
 +++
 
@@ -21,7 +21,8 @@ build and train a neural network as binary classificator from scratch
 ## Questions {#questions}
 
 -   what is neural network from first principles?
--   what is backward propagation / gradient descent?
+-   what is backward propagation?
+-   what is gradient descent?
 -   how PyTorch works under the hood?
 -   how to visualize data as graphs?
 
@@ -46,11 +47,6 @@ build and train a neural network as binary classificator from scratch
 -   gradient descent
 -   machine learning
 -   neural networks
-
-
-## Further reading {#further-reading}
-
--   [An overview of gradient descent optimization algorithms](https://ruder.io/optimizing-gradient-descent/)
 
 
 ## Steps {#steps}
@@ -273,5 +269,17 @@ loss = \sum\_j(y\_{pred}^j - y\_{gt}^j)^2
 ### Conclusion {#conclusion}
 
 -   you've just created, trained and used a real neural network
+    -   provide a link to the project artifact, e.g. on github
 -   you can use it for many different tasks: predict housing prices, recognize
     hand-written digits, etc
+-   self-assessment
+    -   what did you learn?
+    -   how did you like it?
+    -   do you want to continue with similar projects?
+    -   how would you use acquired skills?
+    -   do you have an idea for a project which would use these skills?
+
+
+## What next? {#what-next}
+
+-   [An overview of gradient descent optimization algorithms](https://ruder.io/optimizing-gradient-descent/)
