@@ -1,7 +1,7 @@
 +++
 title = "NN: From Zero to Hero, Lecture 1"
 date = 2022-12-04T00:00:00+00:00
-lastmod = 2022-12-11T17:49:09+00:00
+lastmod = 2022-12-12T11:44:47+00:00
 draft = false
 +++
 
@@ -34,6 +34,14 @@ own.
 
 
 ## Tasks {#tasks}
+
+
+### Install Python {#install-python}
+
+-   install Miniconda3: <https://docs.conda.io/en/latest/miniconda.html>
+-   create a project directory: `mkdir my-project && cd my-project`
+-   create local python environment: `conda create --prefix ./envs`
+-   activate it: `conda activate ./envs`
 
 
 ### Create Jupyter notebook {#create-jupyter-notebook}
@@ -185,7 +193,7 @@ o.backward()
     instead of a list
 
 
-### Create a test dataset {#create-a-test-dataset}
+### Create a test dataset for binary classification {#create-a-test-dataset-for-binary-classification}
 
 -   define some sample data, e.g.
     ```python
@@ -210,8 +218,7 @@ o.backward()
 ### Compute the loss {#compute-the-loss}
 
 -   it indicates how good is the MLP prediction
--   there are different loss functions, but we're gonna use
-    Mean Squared Error (MSE)
+-   there are different loss functions, but we will use Mean Squared Error (MSE)
 
 \\[
 loss = \sum\_j(y\_{pred}^j - y\_{gt}^j)^2
@@ -243,9 +250,9 @@ loss = \sum\_j(y\_{pred}^j - y\_{gt}^j)^2
     -   compute the loss
     -   backprop gradients from the loss
     -   update MLP parameters
--   print predicted values to see how close they got to the ground truth
+-   look at predicted values to see how close they got to the ground truth
 
 
 ### Conclusion {#conclusion}
 
--   you've just created, trained and used a real neural network
+-   you've just created, trained and used a real neural network!
