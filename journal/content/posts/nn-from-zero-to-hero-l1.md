@@ -1,7 +1,7 @@
 +++
 title = "NN: From Zero to Hero, Lecture 1"
 date = 2022-12-04T00:00:00+00:00
-lastmod = 2022-12-12T11:44:47+00:00
+lastmod = 2022-12-12T13:21:14+00:00
 draft = false
 +++
 
@@ -16,24 +16,41 @@ own.
 ## Goals {#goals}
 
 -   learn what is neural network from first principles
--   understand how backward propagation in neural networks works
+-   learn what is backward propagation / gradient descent
 -   build and train a neural network as binary classificator from scratch
 -   refine your Python and Jupyter skills
 -   learn how PyTorch works under the hood
 -   learn how to visualize data as graphs
 
 
-## Skills to be acquired {#skills-to-be-acquired}
+## Prerequisites {#prerequisites}
 
--   Data Visualization
-    -   GraphViz
--   Neural Networks
-    -   expression graph
-    -   backpropagation
-    -   PyTorch
+-   Basic Python
+-   Basic calculus
 
 
-## Tasks {#tasks}
+## Key terms {#key-terms}
+
+-   GraphViz
+-   Jupyter
+-   PyTorch
+-   Python
+-   backpropagation
+-   binary classification
+-   data science
+-   data visualization
+-   expression graph
+-   gradient descent
+-   machine learning
+-   neural networks
+
+
+## Further reading {#further-reading}
+
+-   [An overview of gradient descent optimization algorithms](https://ruder.io/optimizing-gradient-descent/)
+
+
+## Steps {#steps}
 
 
 ### Install Python {#install-python}
@@ -228,17 +245,14 @@ loss = \sum\_j(y\_{pred}^j - y\_{gt}^j)^2
 ### Update MLP parameters {#update-mlp-parameters}
 
 -   add `parameters()` method to MLP which returns the list of all weights and biases
--   compute the gradients starting from the loss:
-    ```python
-      loss.backward()
-    ```
--   go through the list of parameters and nudge each of them in the opposite
-    direction to the gradient (thus decreasing the loss):
-    ```python
-      rate = 0.001
-      for p in mlp.parameters():
-          p.data += rate * -p.grad
-    ```
+-   compute the gradients starting from the loss
+-   update parameters to decrease the loss
+    -   hint: nudge in the opposite direction to the gradient
+        ```python
+              rate = 0.001
+              for p in mlp.parameters():
+                  p.data += rate * -p.grad
+        ```
 -   compute the loss once again and see it getting smaller, which means
     predictions are getting closer to the ground truth
 
