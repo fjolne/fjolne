@@ -1,7 +1,7 @@
 +++
 title = "NN: From Zero to Hero, Lecture 1"
 date = 2022-12-04T00:00:00+00:00
-lastmod = 2022-12-12T15:14:49+00:00
+lastmod = 2022-12-12T19:53:03+00:00
 draft = false
 +++
 
@@ -13,14 +13,17 @@ own.
 <!--more-->
 
 
-## Goals {#goals}
+## Artifact {#artifact}
 
--   learn what is neural network from first principles
--   learn what is backward propagation / gradient descent
--   build and train a neural network as binary classificator from scratch
--   refine your Python and Jupyter skills
--   learn how PyTorch works under the hood
--   learn how to visualize data as graphs
+build and train a neural network as binary classificator from scratch
+
+
+## Questions {#questions}
+
+-   what is neural network from first principles?
+-   what is backward propagation / gradient descent?
+-   how PyTorch works under the hood?
+-   how to visualize data as graphs?
 
 
 ## Prerequisites {#prerequisites}
