@@ -1,7 +1,7 @@
 +++
 title = "NN: From Zero to Hero, Lecture 1"
 date = 2022-12-04T00:00:00+00:00
-lastmod = 2022-12-12T20:24:19+00:00
+lastmod = 2022-12-19T13:56:43+00:00
 draft = false
 +++
 
@@ -13,12 +13,12 @@ own.
 <!--more-->
 
 
-## Artifact {#artifact}
+## Challenge {#challenge}
 
-build and train a neural network as binary classificator from scratch
+Build and train a neural network as binary classificator from scratch.
 
 
-## Questions {#questions}
+### Questions {#questions}
 
 -   what is neural network from first principles?
 -   what is backward propagation?
@@ -27,13 +27,13 @@ build and train a neural network as binary classificator from scratch
 -   how to visualize data as graphs?
 
 
-## Prerequisites {#prerequisites}
+### Prerequisites {#prerequisites}
 
 -   Basic Python
 -   Basic calculus
 
 
-## Key terms {#key-terms}
+### Key terms {#key-terms}
 
 -   GraphViz
 -   Jupyter
@@ -49,10 +49,17 @@ build and train a neural network as binary classificator from scratch
 -   neural networks
 
 
-## Steps {#steps}
+## Milestones {#milestones}
 
 
-### Install Python {#install-python}
+### Preparation {#preparation}
+
+You can setup your workspace any way you want, as long as it provides an
+interactive environment to execute Python code and view generated images. Our
+suggestion would be a Jupyter notebook.
+
+
+#### Install Python {#install-python}
 
 -   install Miniconda3: <https://docs.conda.io/en/latest/miniconda.html>
 -   create a project directory: `mkdir my-project && cd my-project`
@@ -60,13 +67,20 @@ build and train a neural network as binary classificator from scratch
 -   activate it: `conda activate ./envs`
 
 
-### Create Jupyter notebook {#create-jupyter-notebook}
+#### Create Jupyter notebook {#create-jupyter-notebook}
 
 -   install Jupyter: `pip install jupyter`
 -   run Jupyter server: `jupyter notebook`
 
 
-### Create Value abstraction {#create-value-abstraction}
+### Expression graph {#expression-graph}
+
+Implement a general system which provides the ability to compose symbolic
+expressions and do compute over them. This will become the foundation of your
+neural network.
+
+
+#### Create Value abstraction {#create-value-abstraction}
 
 -   it represents a float value
 -   it supports addition and multiplication with other Values
@@ -84,7 +98,7 @@ build and train a neural network as binary classificator from scratch
     ```
 
 
-### Visualize the resulting expression graph {#visualize-the-resulting-expression-graph}
+#### Visualize the resulting expression graph {#visualize-the-resulting-expression-graph}
 
 -   install GraphViz: `pip install graphviz`
 -   import relevant class: `from graphviz import Digraph`
@@ -121,7 +135,7 @@ build and train a neural network as binary classificator from scratch
         {{< figure src="/ox-hugo/l1alt-simple-graph.svg" >}}
 
 
-### Implement gradient calculation {#implement-gradient-calculation}
+#### Implement gradient calculation {#implement-gradient-calculation}
 
 -   gradient is a partial derivative of the final expression
     with respect to the current expression
@@ -147,7 +161,7 @@ build and train a neural network as binary classificator from scratch
     -   consider a case when some Value is used twice
 
 
-### Implement more operations {#implement-more-operations}
+#### Implement more operations {#implement-more-operations}
 
 -   subtraction: `x - y = x + (y * -1)`
 -   power: `x**k` where `k` is a constant (not a Value)
@@ -156,7 +170,7 @@ build and train a neural network as binary classificator from scratch
 -   tanh: `x.tanh()`
 
 
-### Create and test expression graph for a single neuron {#create-and-test-expression-graph-for-a-single-neuron}
+#### Create and test expression graph for a single neuron {#create-and-test-expression-graph-for-a-single-neuron}
 
 ```python
 x1 = Value(2.0, label='x1')
@@ -178,7 +192,14 @@ o.backward()
 ```
 
 
-### Create Neuron abstraction {#create-neuron-abstraction}
+### Neural net {#neural-net}
+
+Implement a multi-layer neural network and test it on some data. This
+abstraction is the gist of the modern machine learning approaches and will help
+you better understand more advanced techniques.
+
+
+#### Create Neuron abstraction {#create-neuron-abstraction}
 
 -   it is defined by a list of weights + bias
 -   it is callable with a list of input values, producing a squashed output:
@@ -187,7 +208,7 @@ o.backward()
         \\]
 
 
-### Create Layer abstraction {#create-layer-abstraction}
+#### Create Layer abstraction {#create-layer-abstraction}
 
 -   it is defined by a list of neurons
 -   it is callable with a list of inputs, producing a list of neuron outputs:
@@ -196,7 +217,7 @@ o.backward()
         \\]
 
 
-### Create MLP (Multi-Layer Perceptron) abstraction {#create-mlp--multi-layer-perceptron--abstraction}
+#### Create MLP (Multi-Layer Perceptron) abstraction {#create-mlp--multi-layer-perceptron--abstraction}
 
 -   it is defined by a list of layers
 -   it is callable with a list of inputs, producing a list of outputs of the last
@@ -209,7 +230,7 @@ o.backward()
     instead of a list
 
 
-### Create a test dataset for binary classification {#create-a-test-dataset-for-binary-classification}
+#### Create a test dataset for binary classification {#create-a-test-dataset-for-binary-classification}
 
 -   define some sample data, e.g.
     ```python
@@ -231,7 +252,7 @@ o.backward()
     ```
 
 
-### Compute the loss {#compute-the-loss}
+#### Compute the loss {#compute-the-loss}
 
 -   it indicates how good is the MLP prediction
 -   there are different loss functions, but we will use Mean Squared Error (MSE)
@@ -241,7 +262,7 @@ loss = \sum\_j(y\_{pred}^j - y\_{gt}^j)^2
 \\]
 
 
-### Update MLP parameters {#update-mlp-parameters}
+#### Update MLP parameters {#update-mlp-parameters}
 
 -   add `parameters()` method to MLP which returns the list of all weights and biases
 -   compute the gradients starting from the loss
@@ -256,7 +277,7 @@ loss = \sum\_j(y\_{pred}^j - y\_{gt}^j)^2
     predictions are getting closer to the ground truth
 
 
-### Create a cycle: Prediction-Loss-Backprop-Update {#create-a-cycle-prediction-loss-backprop-update}
+#### Create a cycle: Prediction-Loss-Backprop-Update {#create-a-cycle-prediction-loss-backprop-update}
 
 -   iterate N times:
     -   compute the predictions
@@ -268,18 +289,42 @@ loss = \sum\_j(y\_{pred}^j - y\_{gt}^j)^2
 
 ### Conclusion {#conclusion}
 
--   you've just created, trained and used a real neural network
-    -   provide a link to the project artifact, e.g. on github
--   you can use it for many different tasks: predict housing prices, recognize
-    hand-written digits, etc
--   self-assessment
-    -   what did you learn?
-    -   how did you like it?
-    -   do you want to continue with similar projects?
-    -   how would you use acquired skills?
-    -   do you have an idea for a project which would use these skills?
+You've just created, trained and used a real neural network. Even though modern
+machine learning techniques are different, they have the same core ideas and
+understanding those will help you to advance in this field. That said, even this
+simple neural network can already be used for a variety of tasks, e.g.
+predicting housing prices or recognizing hand-written digits.
 
 
-## What next? {#what-next}
+#### Project submission {#project-submission}
+
+Please reply to this tweet with a link to the project repository (e.g. on Github) to mark this
+project as complete and to build up your portfolio.
+
+
+#### Self-assessment {#self-assessment}
+
+<!--list-separator-->
+
+-  What did you learn?
+
+<!--list-separator-->
+
+-  How did you like it?
+
+<!--list-separator-->
+
+-  Do you want to continue with similar projects?
+
+<!--list-separator-->
+
+-  How would you use acquired skills?
+
+<!--list-separator-->
+
+-  Do you have an idea for a project which would use these skills?
+
+
+#### What's next? {#what-s-next}
 
 -   [An overview of gradient descent optimization algorithms](https://ruder.io/optimizing-gradient-descent/)
