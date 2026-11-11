@@ -1,0 +1,14 @@
+{
+  "name": "fjolne",
+  "compatibility_date": "2026-11-11",
+  // Static site only: everything in public/ is served as-is, no Worker script.
+  "assets": {
+    "directory": "./public"
+  }
+  // To serve on fjolne.com, first delete the old Netlify DNS records for
+  // fjolne.com and www.fjolne.com in Cloudflare DNS, then uncomment:
+  // ,"routes": [
+  //   { "pattern": "fjolne.com", "custom_domain": true },
+  //   { "pattern": "www.fjolne.com", "custom_domain": true }
+  // ]
+}
