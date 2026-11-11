@@ -51,21 +51,18 @@
     }
 
     .tagline {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
       margin-top: 8px;
       color: var(--muted);
       font-size: 0.9375rem;
+      text-wrap: balance;
     }
 
-    /* Same height as one line of text, so the mark lines up with the first line when it wraps. */
-    .tagline svg { flex: none; width: 1.25em; height: 1.5em; margin-left: -2px; color: var(--fg); }
-
-    .tagline span { text-wrap: balance; }
+    /* Mark spans roughly baseline to cap height. */
+    .tagline svg { width: 1.2em; height: 1.2em; margin: 0 2px 0 -2px; vertical-align: -0.25em; }
 
     .tagline a {
       color: var(--fg);
+      white-space: nowrap;
       text-decoration: underline;
       text-decoration-color: var(--line);
       text-decoration-thickness: 1px;
@@ -133,10 +130,7 @@
 <body>
   <main>
     <h1>Oleg Martynov</h1>
-    <p class="tagline">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.00 19.00 C5.00 16.64 5.07 14.25 5.61 11.95 C5.93 10.57 6.61 9.23 7.75 8.39 C8.90 7.56 10.29 7.12 11.66 6.78 C14.26 6.14 16.93 5.85 19.60 5.60" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="19.6" cy="5.6" r="1.55" fill="currentColor"/></svg>
-      <span>making unverifiable domains verifiable at <a href="https://loglog.ai">loglog.ai</a></span>
-    </p>
+    <p class="tagline">making unverifiable domains verifiable at <a href="https://loglog.ai"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.00 19.00 C5.00 16.64 5.07 14.25 5.61 11.95 C5.93 10.57 6.61 9.23 7.75 8.39 C8.90 7.56 10.29 7.12 11.66 6.78 C14.26 6.14 16.93 5.85 19.60 5.60" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="19.6" cy="5.6" r="1.55" fill="currentColor"/></svg>loglog.ai</a></p>
 
     <ul>
       <li>
